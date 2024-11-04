@@ -17,7 +17,8 @@ defmodule Hangman.Impl.Game do
 
   @spec new_game() :: t
   def new_game do
-    Dictionary.random_word()
+    Dictionary.start()
+    |> Dictionary.random_word()
     |> new_game
   end
 
@@ -40,7 +41,7 @@ defmodule Hangman.Impl.Game do
     |> return_with_tally
   end
 
-  defp tally(game) do
+  def tally(game) do
     %{
       turns_left: game.turns_left,
       game_state: game.game_state,
@@ -53,6 +54,7 @@ defmodule Hangman.Impl.Game do
     {game, tally(game)}
   end
 
+  defp reveal_guessed_letters(game = %{game_state: :lost}), do: game.letters
   defp reveal_guessed_letters(game) do
     game.letters
     |> Enum.map(fn letter ->
