@@ -22,7 +22,7 @@ defmodule Hangman.MixProject do
   defp deps do
     [
       {:dictionary, in_umbrella: true},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 end
