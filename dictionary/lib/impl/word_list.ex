@@ -1,11 +1,10 @@
 defmodule Dictionary.Impl.WordList do
   @type t :: list(String.t)
 
-  @dictionary_path "assets/words.txt"
-
   @spec word_list() :: t
   def word_list() do
-    @dictionary_path
+    "../../assets/words.txt"
+    |> Path.expand(__DIR__)
     |> File.read!
     |> String.split("\n", trim: true)
   end
